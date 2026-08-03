@@ -1,0 +1,18 @@
+# Environments
+.env
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Vector Database and Documents
+vector_store/
+documents/
+fastembed_cache/
+model_cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db
