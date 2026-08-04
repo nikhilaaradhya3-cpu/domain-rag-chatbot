@@ -28,9 +28,16 @@ with st.sidebar:
                 chunks = process_uploaded_pdfs(uploaded_files)
                 vector_db = create_and_save_vector_store(chunks)
                 st.session_state.vector_db = vector_db
+                st.session_state.processed_files = sorted(f.name for f in uploaded_files)
                 st.success(f"Processed {len(uploaded_files)} file(s) into {len(chunks)} text chunks!")
         else:
             st.error("Please upload at least one PDF file first.")
+
+    # Warn if the files currently in the uploader don't match what's actually indexed
+    current_files = sorted(f.name for f in uploaded_files) if uploaded_files else []
+    processed_files = st.session_state.get("processed_files", [])
+    if current_files and current_files != processed_files:
+        st.warning("⚠️ Uploaded files have changed since the last processing. Click **Process Documents** again to include them.")
 
     st.divider()
     if st.button("Clear Chat"):
