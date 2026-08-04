@@ -13,6 +13,11 @@ A Retrieval-Augmented Generation (RAG) chatbot that answers questions from uploa
 
 ## Architecture
 
+   ![Architecture Diagram](docs/architecture.png)
+
+   
+## Architecture
+
 Upload PDFs → Extract text (pypdf) → Chunk text (LangChain splitter) → Generate embeddings (all-MiniLM-L6-v2) → Store in FAISS → Retrieve top-k relevant chunks per question → Send context + question to LLM (Groq) → Display grounded answer with source citations
 
 ## Setup
